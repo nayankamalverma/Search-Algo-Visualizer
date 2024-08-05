@@ -38,6 +38,5 @@ namespace Gameplay
             void setElementSpacing(float space);
 
         };
-
     }
 }

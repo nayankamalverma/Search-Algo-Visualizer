@@ -1,33 +1,29 @@
-﻿
-#include "Gameplay/StickCollection/StickCollectionModel.h"
+﻿#include "Gameplay/StickCollection/StickCollectionModel.h"
 
-namespace Gameplay
-{
-	namespace Collection
-	{
-		StickCollectionModel::StickCollectionModel()
+namespace Gameplay {
+
+	namespace Collection {
+
+		Gameplay::Collection::StickCollectionModel::StickCollectionModel()
 		{
-			
 		}
 
-		StickCollectionModel::~StickCollectionModel()
+		Gameplay::Collection::StickCollectionModel::~StickCollectionModel()
 		{
-			
 		}
 
-		void StickCollectionModel::initialize()
+		void Gameplay::Collection::StickCollectionModel::initialize()
 		{
-			
 		}
 
-		void StickCollectionModel::update()
+		void Gameplay::Collection::StickCollectionModel::update()
 		{
-			
 		}
 
-		void StickCollectionModel::setElementSpacing(float space)
+		void Gameplay::Collection::StickCollectionModel::setElementSpacing(float space)
 		{
-			
+			elements_spacing = space;
 		}
+
 	}
 }
