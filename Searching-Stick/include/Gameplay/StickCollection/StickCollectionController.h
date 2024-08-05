@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <thread>
 
 namespace Gameplay {
 
@@ -11,7 +12,7 @@ namespace Gameplay {
         enum class SearchType;
         struct Stick;
 
-        class StickCollectionController {
+        class StickCollectionContoller {
 
         private:
             StickCollectionView* collection_view;
@@ -21,9 +22,13 @@ namespace Gameplay {
             Stick* stick_to_search;
 
             Collection::SearchType search_type;
+            std::thread search_thread;
+
 
             int number_of_comparisons;
             int number_of_array_access;
+            int current_operation_delay;
+
 
             void initializeSticks();
             float calculateStickWidth();
@@ -35,6 +40,8 @@ namespace Gameplay {
             void resetVariables();
             void resetSearchStick();
 
+            void processSearchThreadState();
+            void joinThreads();
             void processLinearSearch();
             void initializeSticksArray();
             float calculateStickHeight(int array_pos);
@@ -43,8 +50,8 @@ namespace Gameplay {
 
         public:
 
-            StickCollectionController();
-            ~StickCollectionController();
+            StickCollectionContoller();
+            ~StickCollectionContoller();
 
             void initialize();
             void update();
@@ -60,4 +67,6 @@ namespace Gameplay {
             int getNumberOfSticks();
         };
     }
+
+
 }
