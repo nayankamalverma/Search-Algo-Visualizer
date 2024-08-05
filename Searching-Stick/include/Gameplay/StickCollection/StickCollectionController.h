@@ -29,7 +29,7 @@ namespace Gameplay {
             int number_of_array_access;
             int current_operation_delay;
             int delay_in_ms;
-            sf::String time_complexity;								// declared time_complexity variable
+            sf::String time_complexity;
 
 
             void initializeSticks();
@@ -37,8 +37,6 @@ namespace Gameplay {
 
             void updateSticksPosition();
             void shuffleSticks();
-            void sortElements();
-            bool compareElementsByData(const Stick* a, const Stick* b) const;
 
             void resetSticksColor();
             void resetVariables();
@@ -47,7 +45,6 @@ namespace Gameplay {
             void processSearchThreadState();
             void joinThreads();
             void processLinearSearch();
-            void processBinarySearch();
             void initializeSticksArray();
             float calculateStickHeight(int array_pos);
 
@@ -71,9 +68,7 @@ namespace Gameplay {
 
             int getNumberOfSticks();
             int getDelayMilliseconds();
-            sf::String getTimeComplexity();				//declared getTimeComplexity()
+            sf::String getTimeComplexity();
         };
     }
-
-
 }

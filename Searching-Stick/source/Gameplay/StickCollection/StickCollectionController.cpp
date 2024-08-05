@@ -4,7 +4,6 @@
 #include "Gameplay/StickCollection/Stick.h"
 #include "Gameplay/GameplayService.h"
 #include "Global/ServiceLocator.h"
-#include "Sound/SoundService.h"
 #include <random>
 
 namespace Gameplay {
@@ -68,7 +67,6 @@ namespace Gameplay {
 			std::shuffle(sticks.begin(), sticks.end(), random_engine);
 		}
 
-
 		void Gameplay::Collection::StickCollectionController::resetSticksColor()
 		{
 			for (int i = 0; i < sticks.size(); i++)
@@ -102,15 +100,14 @@ namespace Gameplay {
 
 		void Gameplay::Collection::StickCollectionController::processLinearSearch()
 		{
-			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
+
 			for (int i = 0; i < sticks.size(); i++)
 			{
-
 
 				number_of_array_access += 1;
 				number_of_comparisons++;
 
-				sound_service->playSound(Sound::SoundType::COMPARE_SFX);
+				Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
 
 				if (sticks[i] == stick_to_search)
 				{
@@ -127,7 +124,6 @@ namespace Gameplay {
 
 			}
 		}
-
 
 		void Gameplay::Collection::StickCollectionController::initializeSticksArray()
 		{
@@ -250,3 +246,4 @@ namespace Gameplay {
 
 	}
 }
+
