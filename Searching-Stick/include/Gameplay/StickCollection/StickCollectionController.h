@@ -12,7 +12,7 @@ namespace Gameplay {
         enum class SearchType;
         struct Stick;
 
-        class StickCollectionContoller {
+        class StickCollectionController {
 
         private:
             StickCollectionView* collection_view;
@@ -28,6 +28,8 @@ namespace Gameplay {
             int number_of_comparisons;
             int number_of_array_access;
             int current_operation_delay;
+            int delay_in_ms;
+            sf::String time_complexity;								// declared time_complexity variable
 
 
             void initializeSticks();
@@ -35,6 +37,8 @@ namespace Gameplay {
 
             void updateSticksPosition();
             void shuffleSticks();
+            void sortElements();
+            bool compareElementsByData(const Stick* a, const Stick* b) const;
 
             void resetSticksColor();
             void resetVariables();
@@ -43,6 +47,7 @@ namespace Gameplay {
             void processSearchThreadState();
             void joinThreads();
             void processLinearSearch();
+            void processBinarySearch();
             void initializeSticksArray();
             float calculateStickHeight(int array_pos);
 
@@ -50,8 +55,8 @@ namespace Gameplay {
 
         public:
 
-            StickCollectionContoller();
-            ~StickCollectionContoller();
+            StickCollectionController();
+            ~StickCollectionController();
 
             void initialize();
             void update();
@@ -65,6 +70,8 @@ namespace Gameplay {
             int getNumberOfArrayAccess();
 
             int getNumberOfSticks();
+            int getDelayMilliseconds();
+            sf::String getTimeComplexity();				//declared getTimeComplexity()
         };
     }
 
