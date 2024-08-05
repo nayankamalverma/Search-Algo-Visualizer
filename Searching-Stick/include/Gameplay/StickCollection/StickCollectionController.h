@@ -12,7 +12,7 @@ namespace Gameplay {
         enum class SearchType;
         struct Stick;
 
-        class StickCollectionController {
+        class StickCollectionContoller {
 
         private:
             StickCollectionView* collection_view;
@@ -37,6 +37,8 @@ namespace Gameplay {
 
             void updateSticksPosition();
             void shuffleSticks();
+            void sortElements();
+            bool compareElementsByData(const Stick* a, const Stick* b) const;
 
             void resetSticksColor();
             void resetVariables();
@@ -45,6 +47,7 @@ namespace Gameplay {
             void processSearchThreadState();
             void joinThreads();
             void processLinearSearch();
+            void processBinarySearch();
             void initializeSticksArray();
             float calculateStickHeight(int array_pos);
 
@@ -52,8 +55,8 @@ namespace Gameplay {
 
         public:
 
-            StickCollectionController();
-            ~StickCollectionController();
+            StickCollectionContoller();
+            ~StickCollectionContoller();
 
             void initialize();
             void update();

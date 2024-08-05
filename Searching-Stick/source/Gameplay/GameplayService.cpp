@@ -9,7 +9,7 @@ namespace Gameplay
 	GameplayService::GameplayService()
 	{
 		gameplay_controller = new GameplayController();
-		collection_controller = new StickCollectionController();
+		collection_controller = new StickCollectionContoller();
 	}
 
 	GameplayService::~GameplayService()

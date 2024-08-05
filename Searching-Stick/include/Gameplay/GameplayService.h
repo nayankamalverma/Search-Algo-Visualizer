@@ -13,7 +13,7 @@ namespace Gameplay
 	{
 	private:
 		GameplayController* gameplay_controller;
-		StickCollectionController* collection_controller;
+		StickCollectionContoller* collection_controller;
 
 		void initializeRandomSeed();
 
