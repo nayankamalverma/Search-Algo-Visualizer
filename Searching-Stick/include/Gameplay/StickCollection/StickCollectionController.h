@@ -12,7 +12,7 @@ namespace Gameplay {
         enum class SearchType;
         struct Stick;
 
-        class StickCollectionContoller {
+        class StickCollectionController {
 
         private:
             StickCollectionView* collection_view;
@@ -52,8 +52,8 @@ namespace Gameplay {
 
         public:
 
-            StickCollectionContoller();
-            ~StickCollectionContoller();
+            StickCollectionController();
+            ~StickCollectionController();
 
             void initialize();
             void update();
