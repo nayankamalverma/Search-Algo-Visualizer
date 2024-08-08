@@ -67,7 +67,7 @@ namespace Gameplay {
 			std::shuffle(sticks.begin(), sticks.end(), random_engine);
 		}
     
-		void Gameplay::Collection::StickCollectionContoller::resetSticksColor()
+		void Gameplay::Collection::StickCollectionController::resetSticksColor()
 		{
 			for (int i = 0; i < sticks.size(); i++)
 				sticks[i]->stick_view->setFillColor(collection_model->element_color);
