@@ -1,9 +1,9 @@
 #pragma once
 #include "Graphics/GraphicService.h"
 #include "Event/EventService.h"
-#include "Gameplay/GameplayService.h"
 #include "UI/UIService.h"
 #include "Sound/SoundService.h"
+#include "Gameplay/GameplayService.h"
 
 namespace Global
 {
@@ -34,6 +34,6 @@ namespace Global
         Sound::SoundService* getSoundService();
         UI::UIService* getUIService();
         Gameplay::GameplayService* getGameplayService();
-        
+
     };
 }

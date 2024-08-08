@@ -66,8 +66,8 @@ namespace Gameplay {
 
 			std::shuffle(sticks.begin(), sticks.end(), random_engine);
 		}
-
-		void Gameplay::Collection::StickCollectionController::resetSticksColor()
+    
+		void Gameplay::Collection::StickCollectionContoller::resetSticksColor()
 		{
 			for (int i = 0; i < sticks.size(); i++)
 				sticks[i]->stick_view->setFillColor(collection_model->element_color);
@@ -124,6 +124,7 @@ namespace Gameplay {
 
 			}
 		}
+
 
 		void Gameplay::Collection::StickCollectionController::initializeSticksArray()
 		{
@@ -212,6 +213,8 @@ namespace Gameplay {
 				search_thread = std::thread(&StickCollectionController::processLinearSearch, this);
 				break;
 			}
+			
+
 		}
 
 		SearchType Gameplay::Collection::StickCollectionController::getSearchType()
