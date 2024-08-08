@@ -4,7 +4,6 @@
 #include "Gameplay/StickCollection/Stick.h"
 #include "Gameplay/GameplayService.h"
 #include "Global/ServiceLocator.h"
-#include "Sound/SoundService.h"
 #include <random>
 
 namespace Gameplay {
@@ -68,17 +67,6 @@ namespace Gameplay {
 			std::shuffle(sticks.begin(), sticks.end(), random_engine);
 		}
 
-		void StickCollectionContoller::sortElements()
-		{
-			std::sort(sticks.begin(), sticks.end(), [this](const Stick* a, const Stick* b) { return compareElementsByData(a, b); });
-			updateSticksPosition();
-		}
-
-		bool StickCollectionContoller::compareElementsByData(const Stick* a, const Stick* b) const
-		{
-			return a->data < b->data;
-		}
-
 		void Gameplay::Collection::StickCollectionContoller::resetSticksColor()
 		{
 			for (int i = 0; i < sticks.size(); i++)
@@ -112,15 +100,14 @@ namespace Gameplay {
 
 		void Gameplay::Collection::StickCollectionContoller::processLinearSearch()
 		{
-			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
+
 			for (int i = 0; i < sticks.size(); i++)
 			{
-
 
 				number_of_array_access += 1;
 				number_of_comparisons++;
 
-				sound_service->playSound(Sound::SoundType::COMPARE_SFX);
+				Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
 
 				if (sticks[i] == stick_to_search)
 				{
@@ -135,37 +122,6 @@ namespace Gameplay {
 					sticks[i]->stick_view->setFillColor(collection_model->element_color);
 				}
 
-			}
-		}
-
-		void StickCollectionContoller::processBinarySearch()
-		{
-			int left = 0;
-			int right = sticks.size();
-
-			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
-			while (left < right)
-			{
-				int mid = left + (right - left) / 2;
-				number_of_array_access += 2;
-				number_of_comparisons++;
-
-				sound_service->playSound(Sound::SoundType::COMPARE_SFX);
-
-				if (sticks[mid] == stick_to_search)
-				{
-					sticks[mid]->stick_view->setFillColor(collection_model->found_element_color);
-					stick_to_search = nullptr;
-					return;
-				}
-
-				sticks[mid]->stick_view->setFillColor(collection_model->processing_element_color);
-				std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
-				sticks[mid]->stick_view->setFillColor(collection_model->element_color);
-
-				number_of_array_access++;
-				if (sticks[mid]->data <= stick_to_search->data) left = mid;
-				else right = mid;
 			}
 		}
 
@@ -255,13 +211,11 @@ namespace Gameplay {
 				current_operation_delay = collection_model->linear_search_delay;
 				search_thread = std::thread(&StickCollectionContoller::processLinearSearch, this);
 				break;
-			case Gameplay::Collection::SearchType::BINARY_SEARCH:
-				sortElements();
-				time_complexity = "O(log n)";
-				current_operation_delay = collection_model->binary_search_delay;
-				search_thread = std::thread(&StickCollectionContoller::processBinarySearch, this);
-				break;
+			default:
+				printf("default");
 			}
+			
+
 		}
 
 		SearchType Gameplay::Collection::StickCollectionContoller::getSearchType()
@@ -296,3 +250,4 @@ namespace Gameplay {
 
 	}
 }
+
